@@ -123,7 +123,7 @@ The documentation includes:
 ### Clone the repository:
 
 ```
-git clone https://github.com/your-organization/truthcheck-backend.git
+git clone https://github.com/TruthCheck/quickcheckingtool.git
 cd truthcheck
 
 ```
