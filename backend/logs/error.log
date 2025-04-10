@@ -98,3 +98,12 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
     at async Commander.connect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:185:9)
     at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:108:5
+2025-04-10 19:15:42 [31merror[39m: TypeError: redisClient.connect is not a function
+    at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-04-10 19:19:09 [31merror[39m: TypeError: redisClient.connect is not a function
+    at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-04-10 19:21:01 [31merror[39m: TypeError: redisClient.connect is not a function
+    at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

@@ -20,27 +20,21 @@
 //   });
 // });
 
-require("dotenv").config();
+const express = require("express");
 const app = require("./app");
 const connectDB = require("./config/connectDB");
-const redisClient = require("./config/redis");
+// const redisClient = require("./config/redis");
 const logger = require("./utils/logger");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   try {
     await connectDB();
-    await redisClient.connect();
-
-    // try {
-    //   await redisClient.ping();
-    //   logger.info("Redis connection verified");
-    // } catch (err) {
-    //   logger.warn(
-    //     "Redis not available - using in-memory fallback where applicable"
-    //   );
-    // }
+    // await redisClient.connect();
 
     app.listen(PORT, () => {
       logger.info(`Server running on port ${PORT}`);
