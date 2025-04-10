@@ -1,0 +1,12 @@
+{
+  "name": "quickcheckingtool",
+  "version": "1.0.0",
+  "description": "A fact-checking platform for verifying news authenticity in Nigeria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
