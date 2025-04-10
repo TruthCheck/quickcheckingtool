@@ -1,0 +1,117 @@
+2025-04-10 16:05:07 [31merror[39m: Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\ioredis\built\Redis.js:207:28)
+    at Object.onceWrapper (node:events:639:26)
+    at EventEmitter.emit (node:events:524:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-10 16:41:23 [31merror[39m: Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\ioredis\built\Redis.js:207:28)
+    at Object.onceWrapper (node:events:639:26)
+    at EventEmitter.emit (node:events:524:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-10 16:50:03 [31merror[39m: Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\ioredis\built\Redis.js:207:28)
+    at Object.onceWrapper (node:events:639:26)
+    at EventEmitter.emit (node:events:524:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-10 16:51:18 [31merror[39m: Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\ioredis\built\Redis.js:207:28)
+    at Object.onceWrapper (node:events:639:26)
+    at EventEmitter.emit (node:events:524:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-10 16:58:29 [31merror[39m: Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\ioredis\built\Redis.js:207:28)
+    at Object.onceWrapper (node:events:639:26)
+    at EventEmitter.emit (node:events:524:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-10 17:02:38 [31merror[39m: Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\ioredis\built\Redis.js:207:28)
+    at Object.onceWrapper (node:events:639:26)
+    at EventEmitter.emit (node:events:524:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-10 17:15:31 [31merror[39m: TypeError: redisClient.connect is not a function
+    at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-04-10 17:19:06 [31merror[39m: TypeError: Invalid protocol
+    at RedisClient.parseURL (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:60:19)
+    at Commander._RedisClient_initiateOptions (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:365:27)
+    at new RedisClient (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:168:148)
+    at new Commander (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\commander.js:44:13)
+    at create (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:47:16)
+    at createClient (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\redis\dist\index.js:38:38)
+    at initializeRedis (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:9:19)
+    at Object.<anonymous> (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:62:1)
+    at Module._compile (node:internal/modules/cjs/loader:1565:14)
+    at Object..js (node:internal/modules/cjs/loader:1708:10)
+2025-04-10 17:19:08 [31merror[39m: TypeError: redisClient.connect is not a function
+    at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-04-10 17:21:08 [31merror[39m: TypeError: Invalid protocol
+    at RedisClient.parseURL (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:60:19)
+    at Commander._RedisClient_initiateOptions (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:365:27)
+    at new RedisClient (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:168:148)
+    at new Commander (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\commander.js:44:13)
+    at create (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:47:16)
+    at createClient (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\redis\dist\index.js:38:38)
+    at initializeRedis (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:9:19)
+    at Object.<anonymous> (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:62:1)
+    at Module._compile (node:internal/modules/cjs/loader:1565:14)
+    at Object..js (node:internal/modules/cjs/loader:1708:10)
+2025-04-10 17:21:12 [32minfo[39m: Redis connection verified
+2025-04-10 17:21:12 [32minfo[39m: Server running on port 8080
+2025-04-10 17:27:45 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:45 [32minfo[39m: Redis reconnecting
+2025-04-10 17:27:45 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:45 [32minfo[39m: Redis reconnecting
+2025-04-10 17:27:45 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:45 [32minfo[39m: Redis reconnecting
+2025-04-10 17:27:45 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:45 [32minfo[39m: Redis reconnecting
+2025-04-10 17:27:45 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:46 [32minfo[39m: Redis reconnecting
+2025-04-10 17:27:46 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:46 [32minfo[39m: Redis reconnecting
+2025-04-10 17:27:46 [31merror[39m: Too many Redis retries. Connection terminated
+2025-04-10 17:27:46 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:27:46 [31merror[39m: Error: Too many retries
+    at RedisSocket._RedisSocket_shouldReconnect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\socket.js:140:16)
+    at RedisSocket._RedisSocket_connect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\socket.js:162:117)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Commander.connect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:185:9)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:108:5
+2025-04-10 17:27:49 [33mwarn[39m: Redis not available - using in-memory fallback where applicable
+2025-04-10 17:27:49 [32minfo[39m: Server running on port 8080
+2025-04-10 17:37:37 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:37 [32minfo[39m: Redis reconnecting
+2025-04-10 17:37:37 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:37 [32minfo[39m: Redis reconnecting
+2025-04-10 17:37:37 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:37 [32minfo[39m: Redis reconnecting
+2025-04-10 17:37:37 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:37 [32minfo[39m: Redis reconnecting
+2025-04-10 17:37:37 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:38 [32minfo[39m: Redis reconnecting
+2025-04-10 17:37:38 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:38 [32minfo[39m: Redis reconnecting
+2025-04-10 17:37:38 [31merror[39m: Too many Redis retries. Connection terminated
+2025-04-10 17:37:38 [31merror[39m: Error: connect ECONNREFUSED ::1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16)
+2025-04-10 17:37:38 [31merror[39m: Error: Too many retries
+    at RedisSocket._RedisSocket_shouldReconnect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\socket.js:140:16)
+    at RedisSocket._RedisSocket_connect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\socket.js:162:117)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Commander.connect (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\@redis\client\dist\lib\client\index.js:185:9)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\redis.js:108:5
+2025-04-10 17:37:39 [32minfo[39m: Server running on port 8080
