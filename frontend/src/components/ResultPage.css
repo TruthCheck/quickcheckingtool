@@ -1,4 +1,4 @@
-/* Base Styling */
+
 .result-page {
     font-family: Arial, sans-serif;
     padding: 20px;
@@ -6,96 +6,101 @@
     max-width: 700px;
     margin: auto;
     animation: fadeIn 0.8s ease-in;
-  }
-  
-  @keyframes fadeIn {
+    color: #666; 
+}
+
+@keyframes fadeIn {
     from {
-      opacity: 0;
-      transform: translateY(30px);
+        opacity: 0;
+        transform: translateY(30px);
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-  .title {
+}
+
+.title {
     text-align: center;
     font-size: 28px;
     margin-bottom: 30px;
     animation: slideDown 0.5s ease-in;
-  }
-  
-  @keyframes slideDown {
+    color: #333; 
+}
+
+@keyframes slideDown {
     from {
-      opacity: 0;
-      transform: translateY(-20px);
+        opacity: 0;
+        transform: translateY(-20px);
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-  .top-loader-container {
+}
+
+.top-loader-container {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
     animation: popUp 0.6s ease-in;
-  }
-  
-  @keyframes popUp {
+}
+
+@keyframes popUp {
     from {
-      transform: scale(0.8);
-      opacity: 0;
+        transform: scale(0.8);
+        opacity: 0;
     }
     to {
-      transform: scale(1);
-      opacity: 1;
+        transform: scale(1);
+        opacity: 1;
     }
-  }
-  
-  .semi-circle {
+}
+
+.semi-circle {
     width: 100%;
     max-width: 300px;
-  }
-  
-  .result-summary {
+}
+
+.result-summary {
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .verdict {
+}
+
+.verdict {
     font-size: 24px;
-    color: green;
+    color: #28a745; 
     margin: 10px 0 5px 0;
-  }
-  
-  .score {
+}
+
+.score {
     font-size: 18px;
-    color: #555;
-  }
-  
-  .claim-box,
-  .finding-box,
-  .sources-box {
+    color: #555; 
+}
+
+.claim-box,
+.finding-box,
+.sources-box {
     background: white;
     padding: 15px;
     margin: 15px 0;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease-in;
-  }
-  
-  .sources-box ul {
+    color: #555; 
+}
+
+.sources-box ul {
     padding-left: 20px;
     margin-top: 5px;
-  }
-  .sources-box ul li {
-    margin-bottom: 10px; 
-  }
-  
-  .check-more-btn {
+    color: #666; 
+}
+
+.sources-box ul li {
+    margin-bottom: 10px;
+}
+
+.check-more-btn {
     width: 100%;
     padding: 12px 20px;
     background-color: #007BFF;
@@ -104,18 +109,17 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    max-width: 700px; 
+    max-width: 700px;
     margin: 30px auto 20px auto;
     display: block;
-  }
-  
-  
-  .check-more-btn:hover {
+}
+
+.check-more-btn:hover {
     background-color: #0069d9;
     transform: translateY(-2px);
-  }
-  
-  .feedback-section {
+}
+
+.feedback-section {
     margin-top: 40px;
     padding: 20px;
     background: white;
@@ -123,65 +127,69 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     text-align: center;
     animation: fadeIn 0.6s ease-in;
-  }
-  
-  .feedback-section h3 {
+}
+
+.feedback-section h3 {
     margin-bottom: 15px;
     font-size: 18px;
-  }
-  
-  .feedback-options {
+    color: #333; 
+}
+
+.feedback-options {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin-bottom: 15px;
-  }
-  
-  .feedback-options button {
+}
+
+.feedback-options button {
     background-color: #f1f1f1;
     border: none;
     padding: 12px 16px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
+    color: #333; 
     display: flex;
-    flex-direction: column; /* key line */
+    flex-direction: column; 
     align-items: center;
     justify-content: center;
-    width: 80px; /* optional fixed width for uniform buttons */
+    width: 80px; 
     transition: background-color 0.3s;
-  }
-  
-  .feedback-options button:hover {
+}
+
+.feedback-options button:hover {
     background-color: #e0e0e0;
-  }
-  
-  .feedback-options .emoji {
+}
+
+.feedback-options .emoji {
     font-size: 24px;
     margin-bottom: 6px;
-  }
-  
-  .feedback-options .label {
+    color: #888; 
+}
+
+.feedback-options .label {
     font-size: 14px;
-    color: #333;
-  }
-  
-  
-  .feedback-section textarea {
+    color: #666; 
+}
+
+.feedback-section textarea {
     width: 100%;
     padding: 12px;
     font-size: 14px;
     border-radius: 6px;
     border: 1px solid #ccc;
     resize: vertical;
-  }
-  .thought-box {
+    color: #555; 
+}
+
+.thought-box {
     margin-top: 20px;
     text-align: center;
-  }
-  
-  .thought-box textarea {
+}
+
+.thought-box textarea {
     width: 100%;
     max-width: 100%;
     min-height: 80px;
@@ -190,50 +198,45 @@
     border-radius: 6px;
     border: 1px solid #ccc;
     resize: vertical;
-    box-sizing: border-box;
-    display: block;
-    margin: 0 auto;
-  }
-  
+    color: #555; 
+}
 
-  
-  /* Media Queries */
-  @media screen and (max-width: 768px) {
+/* Media Queries */
+@media screen and (max-width: 768px) {
     .title {
-      font-size: 24px;
+        font-size: 24px;
     }
-  
+
     .verdict {
-      font-size: 20px;
+        font-size: 20px;
     }
-  
+
     .score {
-      font-size: 16px;
+        font-size: 16px;
     }
-  
+
     .check-more-btn {
-      font-size: 14px;
-      padding: 10px 16px;
+        font-size: 14px;
+        padding: 10px 16px;
     }
-  
+
     .feedback-options {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-  }
-  
-  @media screen and (max-width: 480px) {
+}
+
+@media screen and (max-width: 480px) {
     .title {
-      font-size: 22px;
+        font-size: 22px;
     }
-  
+
     .feedback-options button {
-      width: 100%;
-      max-width: 200px;
+        width: 100%;
+        max-width: 200px;
     }
-  
+
     .semi-circle {
-      max-width: 220px;
+        max-width: 220px;
     }
-  }
-  
+}

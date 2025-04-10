@@ -6,8 +6,8 @@ function ClaimCheckerPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would integrate the claim checking logic
-    setResult('Result: Verified'); // Example result
+    
+    setResult('Result: Verified'); 
   };
 
   return (
