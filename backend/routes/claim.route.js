@@ -13,7 +13,7 @@ router.get("/test", async (req, res) => {
     const testVerification = await factCheckService.verifyClaim(
       "Test claim - vaccines are safe",
       "health",
-      "en"
+      "en" 
     );
 
     successResponse(res, 200, {

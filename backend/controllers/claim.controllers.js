@@ -16,7 +16,7 @@ exports.submitClaim = [
       console.log("Starting claim processing..."); // Debug log
       const { text, category, image, language = "en" } = req.body;
       // const userId = req.user?._id;
-
+ 
 
       const claim = new Claim({
         originalText: text,
