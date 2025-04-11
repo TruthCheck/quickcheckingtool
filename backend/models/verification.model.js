@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const { ErrorResponse } = require("../utils/errorHandler");
 
@@ -64,6 +65,7 @@ const verificationSchema = new mongoose.Schema(
     disputeReason: String,
     reviewStatus: {
       type: String,
+
       enum: ["pending", "approved", "rejected"],
       default: "approved",
     },
@@ -71,6 +73,7 @@ const verificationSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       // ref: "User",
     },
+
   },
   {
     timestamps: true,
@@ -78,6 +81,7 @@ const verificationSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+
 
 
 verificationSchema.pre("save", function (next) {
@@ -93,23 +97,28 @@ verificationSchema.pre("save", function (next) {
 verificationSchema.pre("save", function (next) {
   if (this.verificationMethod === "automated") {
     this.reviewStatus = "approved";
+
   }
   next();
 });
+
 
 
 verificationSchema.post("save", async function (doc) {
   const Claim = mongoose.model("Claim");
   await Claim.findByIdAndUpdate(doc.claimId, {
     status: doc.verdict === "unverifiable" ? "unverifiable" : "verified",
+
   });
 });
 
 
 verificationSchema.index({ claimId: 1 });
 verificationSchema.index({ verifiedBy: 1 });
+
 verificationSchema.index({ verdict: 1, confidenceScore: -1 });
 
 const Verification = mongoose.model("Verification", verificationSchema);
 
 module.exports = Verification;
+
