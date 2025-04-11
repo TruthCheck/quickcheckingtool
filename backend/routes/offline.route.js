@@ -1,11 +1,13 @@
+// const express = require('express')
 const express = require("express");
-const router = express.Router();
-const { auth } = require("../middlewares/auth");
+// const { auth } = require("../middlewares/auth");
 const OfflineRequest = require("../models/offlineRequest.model");
 const factCheckService = require("../services/factCheck.service");
 const logger = require("../utils/logger");
 
-router.post("/sync", auth, async (req, res) => {
+const router = express.Router();
+
+router.post("/sync", async (req, res) => {
   try {
     const userId = req.user._id;
     const { pendingRequests } = req.body;

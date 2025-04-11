@@ -24,3 +24,28 @@
 //     process.exit(1);
 //   }
 // })();
+
+// Test script
+// const FactCheckService = require("./services/factCheck.service");
+
+// (async () => {
+//   try {
+//     const result = await FactCheckService.verifyClaim(
+//       "COVID vaccines contain microchips",
+//       "health"
+//     );
+//     console.log("Verification Result:", result);
+//   } catch (error) {
+//     console.error("Test failed:", error.message);
+//   }
+// })();
+
+// test.js
+const FactCheckService = require("./services/factCheck.service");
+
+(async () => {
+  const result = await FactCheckService.checkGoogleFactCheck(
+    "COVID vaccines are safe"
+  );
+  console.log("API Response:", result?.claims?.[0]);
+})();

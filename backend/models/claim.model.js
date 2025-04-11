@@ -7,6 +7,13 @@ const claimSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    // submitterInfo: {
+    //   type: {
+    //     name: { type: String, maxlength: 29 },
+    //     contact: { type: String, maxlength: 49 },
+    //   },
+    //   require: false,
+    // },
     translatedTexts: [
       {
         language: {
@@ -40,7 +47,7 @@ const claimSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "in-review", "verified", "debunked"],
+      enum: ["pending", "in-review", "verified", "debunked", "unverifiable"],
       default: "pending",
     },
     imageHash: {

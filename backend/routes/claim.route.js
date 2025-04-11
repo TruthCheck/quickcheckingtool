@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { auth } = require("../middlewares/auth");
+// const { auth } = require("../middlewares/auth");
 const Claim = require("../models/claim.model");
 const Verification = require("../models/verification.model");
 const factCheckService = require("../services/factCheck.service");
@@ -29,7 +29,7 @@ router.get("/test", async (req, res) => {
   }
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { text, category, image, language = "en" } = req.body;
     const userId = req.user._id;
@@ -80,7 +80,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-router.get("/:requestId", auth, async (req, res) => {
+router.get("/:requestId", async (req, res) => {
   try {
     const { requestId } = req.params;
     const { language = "en" } = req.query;

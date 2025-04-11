@@ -1,93 +1,44 @@
-const GoogleFactCheckAPI = require("../apis/google-factcheck");
 const CachedResult = require("../models/cachedResult.model");
 const Verification = require("../models/verification.model");
 const OfficialSource = require("../models/officialSource.model");
-const { generateClaimHash } = require("../utils/hashing");
+const { generateClaimHash, generateImageHash } = require("../utils/hashing");
 const logger = require("../utils/logger");
+const axios = require("axios");
 
 class FactCheckService {
   constructor() {
-    this.googleAPI = new GoogleFactCheckAPI(process.env.GOOGLE_API_KEY);
+    this.baseUrl =
+      "https://factchecktools.googleapis.com/v1alpha1/claims:search";
   }
 
   async verifyClaim(claimText, category, language = "en") {
-    // const claimHash = generateClaimHash(claimText);
-
-    // const cached = await CachedResult.findOne({ claimHash }).populate({
-    //   path: "verificationId",
-    //   select: "verdict explanation sources confidenceScore",
-    // });
-
-    // if (cached) {
-    //   await CachedResult.updateOne(
-    //     { _id: cached._id },
-    //     { $set: { lastAccessed: new Date() }, $inc: { accessCount: 1 } }
-    //   );
-
-    //   const verification = cached.verificationId.toObject();
-    //   if (language !== "en") {
-    //     verification.explanation = `[${language}] ${verification.explanation}`;
-    //   }
-
-    //   return verification;
-    // }
-
-    // const googleResult = await this.checkGoogleFactCheck(claimText, language);
-
-    // const officialResults = await this.checkOfficialSources(
-    //   claimText,
-    //   category,
-    //   language
-    // );
-
-    // const verdict = this.analyzeResults(googleResult, officialResults);
-
-    // const verificationDoc = new Verification(verdict);
-    // await verificationDoc.save();
-
-    // await CachedResult.findOneAndUpdate(
-    //   { claimHash },
-    //   {
-    //     verificationId: verificationDoc._id,
-    //     lastAccessed: new Date(),
-    //     accessCount: 1,
-    //     $addToSet: { languagesAvailable: language },
-    //   },
-    //   { upsert: true, new: true }
-    // );
-
-    // return verdict;
-
     try {
-      const claimHash = this.generateClaimHash(claimText);
-      console.log(`Verifying claim: ${claimText.substring(0, 50)}...`); // Debug log
+      const claimHash = generateClaimHash(claimText);
+      console.log(`Verifying claim: ${claimText.substring(0, 50)}...`);
 
-      // Check cache
       const cached = await CachedResult.findOne({ claimHash })
         .populate("verificationId")
         .lean();
 
       if (cached) {
-        console.log("Returning cached result"); // Debug log
+        console.log("Returning cached result");
         return cached.verificationId;
       }
 
-      console.log("Checking Google FactCheck API..."); // Debug log
-      const googleResult = await this.checkGoogleFactCheck(claimText, language);
-
-      console.log("Checking official sources..."); // Debug log
-      const officialResults = await this.checkOfficialSources(
-        claimText,
-        category,
-        language
-      );
+      const [googleResult, officialResults] = await Promise.all([
+        this.checkGoogleFactCheck(claimText, language),
+        this.checkOfficialSources(claimText, category, language),
+      ]);
 
       const verdict = this.analyzeResults(googleResult, officialResults);
-      console.log("Analysis complete:", verdict); // Debug log
+      verdict.verificationMethod = this.getVerificationMethod(
+        googleResult,
+        officialResults
+      );
 
-      // Save to cache
-      const verificationDoc = new Verification(verdict);
-      await verificationDoc.save();
+      console.log("Analysis complete:", verdict);
+
+      const verificationDoc = await Verification.create(verdict);
 
       await CachedResult.updateOne(
         { claimHash },
@@ -100,27 +51,58 @@ class FactCheckService {
         { upsert: true }
       );
 
-      return verdict;
+      return verificationDoc.toObject();
     } catch (error) {
-      console.error("FactCheckService error:", error.stack); // Detailed error
+      console.error("FactCheckService error:", error);
       throw new Error(`Fact-check failed: ${error.message}`);
     }
   }
 
-  async checkGoogleFactCheck(claimText, language) {
+  getVerificationMethod(googleResult, officialResults) {
+    if (officialResults.length > 0 && googleResult?.claims?.length > 0) {
+      return "combined";
+    } else if (officialResults.length > 0) {
+      return "official_sources";
+    } else if (googleResult?.claims?.length > 0) {
+      return "google_factcheck";
+    } else {
+      return "unverifiable";
+    }
+  }
+
+  async checkGoogleFactCheck(claimText, language = "en") {
     try {
+      const apiKey = process.env.GOOGLE_FACTCHECK_API_KEY;
+      const baseUrl =
+        "https://factchecktools.googleapis.com/v1alpha1/claims:search";
+
       const params = new URLSearchParams({
-        key: process.env.GOOGLE_FACTCHECK_API_KEY,
         query: claimText,
-        languageCode: language,
+        languageCode: this.mapLanguageCode(language),
+        key: apiKey,
       });
 
-      const response = await axios.get(`${this.googleFactCheckUrl}?${params}`);
+      const url = `${baseUrl}?${params.toString()}`;
+      const response = await axios.get(url);
+
       return response.data;
     } catch (error) {
-      logger.error("Google FactCheck API error:", error);
+      logger.error(
+        "Google FactCheck API error:",
+        error.response?.data || error.message
+      );
       return null;
     }
+  }
+
+  mapLanguageCode(lang) {
+    const mappings = {
+      en: "en-US",
+      ha: "ha-NG",
+      yo: "yo-NG",
+      ig: "ig-NG",
+    };
+    return mappings[lang] || "en-US";
   }
 
   async checkOfficialSources(claimText, category, language) {
@@ -184,31 +166,33 @@ class FactCheckService {
       const majorityVerdict = Object.entries(verdictCounts).sort(
         (a, b) => b[1] - a[1]
       )[0][0];
+
       const majorityResults = officialResults.filter(
         (r) => r.verdict === majorityVerdict
       );
 
       return {
         verdict: majorityVerdict,
-        explanation: majorityResults[0].explanation,
-        sources: majorityResults.map((r) => r.url),
-        confidenceScore: Math.min(100, majorityResults.length * 10 + 50),
+        explanation:
+          majorityResults[0]?.explanation || "Verified by official sources",
+        sources: majorityResults.map((r) => r.url).filter(Boolean),
+        confidenceScore: Math.min(100, majorityResults.length * 15 + 50),
       };
     }
 
     if (googleResult?.claims?.length > 0) {
-      const claim = googleResult.claims[0];
+      const mostRelevant = googleResult.claims[0].claimReview[0];
       return {
-        verdict: claim.claimReview[0].textualRating.toLowerCase(),
-        explanation: claim.claimReview[0].title,
-        sources: [claim.claimReview[0].url],
-        confidenceScore: 80,
+        verdict: mostRelevant.textualRating.toLowerCase(),
+        explanation: mostRelevant.title || "Verified by fact-checkers",
+        sources: [mostRelevant.url].filter(Boolean),
+        confidenceScore: 70,
       };
     }
 
     return {
       verdict: "unverifiable",
-      explanation: "Could not verify this claim with available sources",
+      explanation: "Could not verify with available sources",
       sources: [],
       confidenceScore: 0,
     };
