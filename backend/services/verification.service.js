@@ -1,10 +1,13 @@
+
 const mongoose = require("mongoose");
 const Verification = require("../models/verification.model");
 const Claim = require("../models/claim.model");
 const { ErrorResponse } = require("../utils/errorHandler");
 
+
 class VerificationService {
   async createVerification(verificationData, verifierId = null) {
+
     if (verificationData.verificationMethod === "human" && verifierId) {
       verificationData.verifiedBy = verifierId;
     }
@@ -33,7 +36,7 @@ class VerificationService {
         processingTime: 0,
         toolsUsed: [],
       };
-    }
+
 
     return await Verification.create({
       claimId: claim._id,
@@ -53,12 +56,16 @@ class VerificationService {
     // return Verification;
   }
 
-  // Get a verification by ID
-  async getVerificationById(id, withPopulate = true) {
+  // Get a verification by ID with optional population
+  async getVerificationById(id, options = {}) {
+    const { populate = true, lean = false } = options;
+    
     let query = Verification.findById(id);
+
 
     if (withPopulate) {
       query = query.populate("claimId", "content author sourceUrl");
+
     }
 
     const verification = await query;
@@ -69,6 +76,7 @@ class VerificationService {
 
     return verification;
   }
+
 
   async updateVerification(id, updateData, verifierId, isAdmin = false) {
     const verification = await this.getVerificationById(id, false);
@@ -95,6 +103,7 @@ class VerificationService {
         new: true,
         runValidators: true,
       }
+
     );
 
     return updatedVerification;
@@ -134,6 +143,7 @@ class VerificationService {
       }
     );
 
+
     return updatedVerification;
   }
 
@@ -144,35 +154,43 @@ class VerificationService {
 
     const verification = await this.getVerificationById(id, false);
 
+
     if (!verification.isDisputed) {
       throw new ErrorResponse("This verification is not disputed", 400);
     }
 
+
     if (!isAdmin) {
       throw new ErrorResponse(`Not authorized to review disputes`, 401);
+
     }
 
     const updatedVerification = await Verification.findByIdAndUpdate(
       id,
+
       {
         reviewStatus: status,
         reviewedBy: reviewerId,
       },
+
       {
         new: true,
         runValidators: true,
       }
     );
 
+
     return updatedVerification;
   }
 
   async getVerificationsByClaim(claimId) {
+
     // Check if claim exists
-    const claim = await Claim.findById(claimId);
-    if (!claim) {
+    const claimExists = await Claim.exists({ _id: claimId });
+    if (!claimExists) {
       throw new ErrorResponse(`Claim not found with id of ${claimId}`, 404);
     }
+
 
     const verifications = await Verification.find({ claimId });
 
@@ -189,10 +207,12 @@ class VerificationService {
         `Failed to fetch high confidence verifications: ${error.message}`,
         500
       );
+
     }
   }
 
   async getVerificationStats() {
+
     const verdictStats = await Verification.aggregate([
       {
         $group: {
@@ -238,12 +258,16 @@ class VerificationService {
   }
 
   async getRecentVerifications(limit = 10) {
+
     const verifications = await Verification.find()
       .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
       .limit(limit)
+
       .populate("claimId", "content");
 
     return verifications;
+
   }
 }
 
