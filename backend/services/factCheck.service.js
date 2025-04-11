@@ -11,52 +11,100 @@ class FactCheckService {
   }
 
   async verifyClaim(claimText, category, language = "en") {
-    const claimHash = generateClaimHash(claimText);
+    // const claimHash = generateClaimHash(claimText);
 
-    const cached = await CachedResult.findOne({ claimHash }).populate({
-      path: "verificationId",
-      select: "verdict explanation sources confidenceScore",
-    });
+    // const cached = await CachedResult.findOne({ claimHash }).populate({
+    //   path: "verificationId",
+    //   select: "verdict explanation sources confidenceScore",
+    // });
 
-    if (cached) {
-      await CachedResult.updateOne(
-        { _id: cached._id },
-        { $set: { lastAccessed: new Date() }, $inc: { accessCount: 1 } }
-      );
+    // if (cached) {
+    //   await CachedResult.updateOne(
+    //     { _id: cached._id },
+    //     { $set: { lastAccessed: new Date() }, $inc: { accessCount: 1 } }
+    //   );
 
-      const verification = cached.verificationId.toObject();
-      if (language !== "en") {
-        verification.explanation = `[${language}] ${verification.explanation}`;
+    //   const verification = cached.verificationId.toObject();
+    //   if (language !== "en") {
+    //     verification.explanation = `[${language}] ${verification.explanation}`;
+    //   }
+
+    //   return verification;
+    // }
+
+    // const googleResult = await this.checkGoogleFactCheck(claimText, language);
+
+    // const officialResults = await this.checkOfficialSources(
+    //   claimText,
+    //   category,
+    //   language
+    // );
+
+    // const verdict = this.analyzeResults(googleResult, officialResults);
+
+    // const verificationDoc = new Verification(verdict);
+    // await verificationDoc.save();
+
+    // await CachedResult.findOneAndUpdate(
+    //   { claimHash },
+    //   {
+    //     verificationId: verificationDoc._id,
+    //     lastAccessed: new Date(),
+    //     accessCount: 1,
+    //     $addToSet: { languagesAvailable: language },
+    //   },
+    //   { upsert: true, new: true }
+    // );
+
+    // return verdict;
+
+    try {
+      const claimHash = this.generateClaimHash(claimText);
+      console.log(`Verifying claim: ${claimText.substring(0, 50)}...`); // Debug log
+
+      // Check cache
+      const cached = await CachedResult.findOne({ claimHash })
+        .populate("verificationId")
+        .lean();
+
+      if (cached) {
+        console.log("Returning cached result"); // Debug log
+        return cached.verificationId;
       }
 
-      return verification;
+      console.log("Checking Google FactCheck API..."); // Debug log
+      const googleResult = await this.checkGoogleFactCheck(claimText, language);
+
+      console.log("Checking official sources..."); // Debug log
+      const officialResults = await this.checkOfficialSources(
+        claimText,
+        category,
+        language
+      );
+
+      const verdict = this.analyzeResults(googleResult, officialResults);
+      console.log("Analysis complete:", verdict); // Debug log
+
+      // Save to cache
+      const verificationDoc = new Verification(verdict);
+      await verificationDoc.save();
+
+      await CachedResult.updateOne(
+        { claimHash },
+        {
+          verificationId: verificationDoc._id,
+          lastAccessed: new Date(),
+          $inc: { accessCount: 1 },
+          $addToSet: { languagesAvailable: language },
+        },
+        { upsert: true }
+      );
+
+      return verdict;
+    } catch (error) {
+      console.error("FactCheckService error:", error.stack); // Detailed error
+      throw new Error(`Fact-check failed: ${error.message}`);
     }
-
-    const googleResult = await this.checkGoogleFactCheck(claimText, language);
-
-    const officialResults = await this.checkOfficialSources(
-      claimText,
-      category,
-      language
-    );
-
-    const verdict = this.analyzeResults(googleResult, officialResults);
-
-    const verificationDoc = new Verification(verdict);
-    await verificationDoc.save();
-
-    await CachedResult.findOneAndUpdate(
-      { claimHash },
-      {
-        verificationId: verificationDoc._id,
-        lastAccessed: new Date(),
-        accessCount: 1,
-        $addToSet: { languagesAvailable: language },
-      },
-      { upsert: true, new: true }
-    );
-
-    return verdict;
   }
 
   async checkGoogleFactCheck(claimText, language) {

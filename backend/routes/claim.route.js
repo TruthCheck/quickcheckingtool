@@ -5,8 +5,29 @@ const Claim = require("../models/claim.model");
 const Verification = require("../models/verification.model");
 const factCheckService = require("../services/factCheck.service");
 const translationService = require("../services/translation.service");
-const logger = require("../utils/logger");
+const logger = require("../utils/logger.js");
 
+router.get("/test", async (req, res) => {
+  try {
+    logger.info("Testing fact check service...");
+    const testVerification = await factCheckService.verifyClaim(
+      "Test claim - vaccines are safe",
+      "health",
+      "en"
+    );
+
+    successResponse(res, 200, {
+      message: "Test successful",
+      result: testVerification,
+    });
+  } catch (error) {
+    logger.error("Test route error:", error);
+    errorResponse(res, 500, "Test failed", {
+      error: error.message,
+      stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+    });
+  }
+});
 
 router.post("/", auth, async (req, res) => {
   try {
@@ -58,7 +79,6 @@ router.post("/", auth, async (req, res) => {
     return res.status(500).json({ error: "Failed to process claim" });
   }
 });
-
 
 router.get("/:requestId", auth, async (req, res) => {
   try {

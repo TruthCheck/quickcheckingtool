@@ -17,13 +17,13 @@ const auth = async (req, res, next) => {
     });
 
     if (!user) {
-      return errorResponse(res, 401, "Authentication failed");
+      return errorResponse(res, 401, "Authentication failed", user);
     }
 
     req.user = user;
     req.token = token;
     next();
-} catch (error) {
+  } catch (error) {
     logger.error("Authentication error:", error);
     return errorResponse(res, 401, "Invalid authentication");
   }

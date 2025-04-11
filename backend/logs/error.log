@@ -107,3 +107,49 @@
 2025-04-10 19:21:01 [31merror[39m: TypeError: redisClient.connect is not a function
     at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-04-10 23:14:06 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 05:31:05 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 05:50:54 [31merror[39m: ReferenceError: axios is not defined
+    at FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:70:24)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:35:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\routes\claim.route.js:29:26
+2025-04-11 05:50:54 [31merror[39m: ValidationError: Verification validation failed: claimId: Path `claimId` is required.
+    at Document.invalidate (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3351:32)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3112:17
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-11 06:05:09 [31merror[39m: ReferenceError: axios is not defined
+    at FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:70:24)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:35:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\routes\claim.route.js:29:26
+2025-04-11 06:05:09 [31merror[39m: ValidationError: Verification validation failed: claimId: Path `claimId` is required.
+    at Document.invalidate (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3351:32)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3112:17
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-11 06:40:41 [31merror[39m: ReferenceError: logger is not defined
+    at connectDB (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\connectDB.js:16:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:10:5
