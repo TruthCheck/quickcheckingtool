@@ -3,7 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const logger = require("./utils/logger");
-const authRoutes = require("./routes/auth.route");
+// const authRoutes = require("./routes/auth.route");
 const claimRoutes = require("./routes/claim.route");
 const offlineRoutes = require("./routes/offline.route");
 const translationRoutes = require("./routes/translation.route");
@@ -20,7 +20,7 @@ app.use(
   })
 );
 
-app.use("/api/auth", authRoutes);
+// app.use("/api/auth", authRoutes);
 app.use("/api/claims", claimRoutes);
 app.use("/api/offline", offlineRoutes);
 app.use("/api/translate", translationRoutes);

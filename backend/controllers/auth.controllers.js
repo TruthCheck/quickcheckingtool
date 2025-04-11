@@ -16,7 +16,7 @@ exports.register = async (req, res) => {
       return errorResponse(res, 400, "Phone number already registered");
     }
 
-    const user = new User({
+    const user = new User({ 
       phoneNumber,
       email,
       passwordHash: password,

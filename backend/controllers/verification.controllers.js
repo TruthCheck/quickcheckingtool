@@ -10,9 +10,12 @@ const parseAuthHeaders = (req) => ({
   reviewerId: req.user?.id || req.headers['x-reviewer-id'] || null
 });
 
-// Create a new verification
+
 exports.createVerification = asyncHandler(async (req, res, next) => {
-  const { verifierId } = parseAuthHeaders(req);
+
+
+  const verifierId = req.headers['x-verifier-id'] || null;
+
   
   logger.info('Verification creation initiated', { 
     body: req.body,
@@ -35,7 +38,9 @@ exports.createVerification = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 // Get all verifications with pagination
+
 exports.getAllVerifications = asyncHandler(async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 25;
@@ -53,7 +58,7 @@ exports.getAllVerifications = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
-// Get single verification
+
 
 exports.getVerification = asyncHandler(async (req, res, next) => {
   const verification = await verificationService.getVerificationById(
@@ -67,7 +72,9 @@ exports.getVerification = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 // Update verification
+
 
 exports.updateVerification = asyncHandler(async (req, res, next) => {
   const { verifierId, isAdmin } = parseAuthHeaders(req);
@@ -95,7 +102,9 @@ exports.updateVerification = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 // Delete verification
+
 
 exports.deleteVerification = asyncHandler(async (req, res, next) => {
   const { isAdmin } = parseAuthHeaders(req);
@@ -120,7 +129,9 @@ exports.deleteVerification = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 // Dispute a verification
+
 
 exports.disputeVerification = asyncHandler(async (req, res, next) => {
   const { reason } = req.body;
@@ -156,7 +167,9 @@ exports.disputeVerification = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 // Review a disputed verification
+
 
 exports.reviewDispute = asyncHandler(async (req, res, next) => {
   const { status } = req.body;
@@ -193,7 +206,9 @@ exports.reviewDispute = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 // Get verifications by claim ID
+
 exports.getVerificationsByClaim = asyncHandler(async (req, res, next) => {
   const { verifications, pagination } = await verificationService.getVerificationsByClaim(
     req.params.claimId,
@@ -215,7 +230,9 @@ exports.getVerificationsByClaim = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 //Get verification statistics
+
 exports.getVerificationStats = asyncHandler(async (req, res, next) => {
   const stats = await verificationService.getVerificationStats();
 
@@ -225,7 +242,9 @@ exports.getVerificationStats = asyncHandler(async (req, res, next) => {
   ).send(res);
 });
 
+
 //Get high confidence verifications
+
 exports.getHighConfidenceVerifications = asyncHandler(async (req, res, next) => {
   const minConfidence = parseFloat(req.query.min) || 0.8;
   const page = parseInt(req.query.page) || 1;
@@ -245,7 +264,9 @@ exports.getHighConfidenceVerifications = asyncHandler(async (req, res, next) => 
   ).send(res);
 });
 
+
 //Get recent verifications
+
 
 exports.getRecentVerifications = asyncHandler(async (req, res, next) => {
   const limit = parseInt(req.query.limit) || 10;

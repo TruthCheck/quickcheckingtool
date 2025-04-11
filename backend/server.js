@@ -16,10 +16,10 @@ const startServer = async () => {
     // await redisClient.connect();
 
     app.listen(PORT, () => {
-      logger.info(`Server running on port ${PORT}`);
+      logger.info(`Server running on port ${PORT} 🎉` );
     });
   } catch (error) {
-    logger.error("Failed to start server:", error);
+    logger.error("Failed to start server: ⛔", error);
     process.exit(1);
   }
 };

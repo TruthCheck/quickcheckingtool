@@ -1,14 +1,35 @@
 const express = require("express");
 const router = express.Router();
-const { auth } = require("../middlewares/auth");
+// const { auth } = require("../middlewares/auth");
 const Claim = require("../models/claim.model");
 const Verification = require("../models/verification.model");
 const factCheckService = require("../services/factCheck.service");
 const translationService = require("../services/translation.service");
-const logger = require("../utils/logger");
+const logger = require("../utils/logger.js");
 
+router.get("/test", async (req, res) => {
+  try {
+    logger.info("Testing fact check service...");
+    const testVerification = await factCheckService.verifyClaim(
+      "Test claim - vaccines are safe",
+      "health",
+      "en"
+    );
 
-router.post("/", auth, async (req, res) => {
+    successResponse(res, 200, {
+      message: "Test successful",
+      result: testVerification,
+    });
+  } catch (error) {
+    logger.error("Test route error:", error);
+    errorResponse(res, 500, "Test failed", {
+      error: error.message,
+      stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+    });
+  }
+});
+
+router.post("/", async (req, res) => {
   try {
     const { text, category, image, language = "en" } = req.body;
     const userId = req.user._id;
@@ -59,8 +80,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-
-router.get("/:requestId", auth, async (req, res) => {
+router.get("/:requestId", async (req, res) => {
   try {
     const { requestId } = req.params;
     const { language = "en" } = req.query;

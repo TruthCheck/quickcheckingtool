@@ -125,4 +125,367 @@
     at startServer (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\server.js:34:23)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 2025-04-10 22:20:55 [32minfo[39m: Server running on port 8080
-2025-04-10 23:20:42 [32minfo[39m: Server running on port 3000
+
+2025-04-10 22:23:27 [32minfo[39m: Server running on port 8080
+2025-04-10 23:08:46 [32minfo[39m: ::1 - - [10/Apr/2025:22:08:46 +0000] "POST /api/auth/register HTTP/1.1" 201 294 "-" "PostmanRuntime/7.43.3"
+2025-04-10 23:11:18 [32minfo[39m: ::1 - - [10/Apr/2025:22:11:18 +0000] "POST /api/auth/login HTTP/1.1" 200 294 "-" "PostmanRuntime/7.43.3"
+2025-04-10 23:14:06 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-10 23:14:06 [32minfo[39m: ::1 - - [10/Apr/2025:22:14:06 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "PostmanRuntime/7.43.3"
+2025-04-11 05:22:15 [32minfo[39m: Server running on port 8080
+2025-04-11 05:31:05 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 05:31:05 [32minfo[39m: ::1 - - [11/Apr/2025:04:31:05 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "PostmanRuntime/7.43.3"
+2025-04-11 05:44:25 [32minfo[39m: ::1 - - [11/Apr/2025:04:44:25 +0000] "POST /api/auth/register HTTP/1.1" 201 291 "-" "PostmanRuntime/7.43.3"
+2025-04-11 05:47:14 [32minfo[39m: ::1 - - [11/Apr/2025:04:47:14 +0000] "POST /api/auth/login HTTP/1.1" 200 291 "-" "PostmanRuntime/7.43.3"
+2025-04-11 05:50:54 [31merror[39m: ReferenceError: axios is not defined
+    at FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:70:24)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:35:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\routes\claim.route.js:29:26
+2025-04-11 05:50:54 [31merror[39m: ValidationError: Verification validation failed: claimId: Path `claimId` is required.
+    at Document.invalidate (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3351:32)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3112:17
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-11 05:50:54 [32minfo[39m: ::1 - - [11/Apr/2025:04:50:54 +0000] "POST /api/claims HTTP/1.1" 500 35 "-" "PostmanRuntime/7.43.3"
+2025-04-11 06:05:09 [31merror[39m: ReferenceError: axios is not defined
+    at FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:70:24)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:35:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\routes\claim.route.js:29:26
+2025-04-11 06:05:09 [31merror[39m: ValidationError: Verification validation failed: claimId: Path `claimId` is required.
+    at Document.invalidate (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3351:32)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\document.js:3112:17
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-04-11 06:05:09 [32minfo[39m: ::1 - - [11/Apr/2025:05:05:09 +0000] "POST /api/claims HTTP/1.1" 500 35 "-" "PostmanRuntime/7.43.3"
+2025-04-11 06:10:02 [32minfo[39m: ::1 - - [11/Apr/2025:05:10:02 +0000] "POST /api/claims/test HTTP/1.1" 404 30 "-" "PostmanRuntime/7.43.3"
+2025-04-11 06:16:41 [32minfo[39m: ::1 - - [11/Apr/2025:05:16:41 +0000] "POST /api/claims/test HTTP/1.1" 404 30 "-" "PostmanRuntime/7.43.3"
+2025-04-11 06:40:35 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 06:40:41 [31merror[39m: ReferenceError: logger is not defined
+    at connectDB (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\config\connectDB.js:16:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:10:5
+2025-04-11 07:08:09 [32minfo[39m: MongoDB connection established
+2025-04-11 07:08:09 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 07:08:09 [32minfo[39m: Server running on port 8080 🎉
+2025-04-11 07:10:44 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 07:10:48 [32minfo[39m: MongoDB connection established
+2025-04-11 07:10:48 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 07:10:48 [32minfo[39m: Testing fact check service...
+2025-04-11 07:10:49 [31merror[39m: ReferenceError: axios is not defined
+    at FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:118:24)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:76:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:10:49 [31merror[39m: Error: Fact-check failed: Verification validation failed: claimId: Method is required
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:106:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:15:11 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 07:15:16 [32minfo[39m: MongoDB connection established
+2025-04-11 07:15:16 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 07:15:16 [32minfo[39m: Testing fact check service...
+2025-04-11 07:15:17 [31merror[39m: TypeError: Invalid URL
+    at new URL (node:internal/url:818:25)
+    at dispatchHttpRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2783:20)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2703:5
+    at new Promise (<anonymous>)
+    at wrapAsync (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2683:10)
+    at http (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2721:10)
+    at Axios.dispatchRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4098:10)
+    at Axios._request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4398:33)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4253:25)
+    at Axios.<computed> [as get] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4424:17)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:119:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:77:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:15:18 [31merror[39m: Error: Fact-check failed: Verification validation failed: claimId: Method is required
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:107:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:34:21 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 07:34:25 [32minfo[39m: MongoDB connection established
+2025-04-11 07:34:25 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 07:34:25 [32minfo[39m: Testing fact check service...
+2025-04-11 07:34:26 [31merror[39m: TypeError: Invalid URL
+    at new URL (node:internal/url:818:25)
+    at dispatchHttpRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2783:20)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2703:5
+    at new Promise (<anonymous>)
+    at wrapAsync (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2683:10)
+    at http (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2721:10)
+    at Axios.dispatchRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4098:10)
+    at Axios._request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4398:33)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4253:25)
+    at Axios.<computed> [as get] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4424:17)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:119:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:77:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:34:26 [31merror[39m: Error: Fact-check failed: Verification validation failed: verificationMethod: Method is required, claimId: Claim ID is required
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:107:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:48:26 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 07:48:31 [32minfo[39m: MongoDB connection established
+2025-04-11 07:48:31 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 07:48:31 [32minfo[39m: Testing fact check service...
+2025-04-11 07:48:31 [31merror[39m: ReferenceError: query is not defined
+    at FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:121:7)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:77:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 07:48:31 [31merror[39m: Error: Fact-check failed: Verification validation failed: verificationMethod: Method is required
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:107:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:08:28 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 08:08:34 [32minfo[39m: MongoDB connection established
+2025-04-11 08:08:34 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 08:08:34 [32minfo[39m: Testing fact check service...
+2025-04-11 08:08:36 [31merror[39m: AxiosError: Request failed with status code 400
+    at settle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2031:12)
+    at Unzip.handleStreamEnd (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:3148:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:143:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:77:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:08:36 [31merror[39m: Error: Fact-check failed: Verification validation failed: verificationMethod: Method is required
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:106:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:15:29 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 08:15:35 [32minfo[39m: MongoDB connection established
+2025-04-11 08:15:35 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 08:15:35 [32minfo[39m: Testing fact check service...
+2025-04-11 08:15:36 [31merror[39m: AxiosError: Request failed with status code 400
+    at settle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2031:12)
+    at Unzip.handleStreamEnd (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:3148:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:160:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:77:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:15:37 [31merror[39m: Error: Fact-check failed: Verification validation failed: verificationMethod: `unverifiable` is not a valid enum value for path `verificationMethod`.
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:111:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:18:04 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 08:18:09 [32minfo[39m: MongoDB connection established
+2025-04-11 08:18:09 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 08:18:09 [32minfo[39m: Testing fact check service...
+2025-04-11 08:18:11 [31merror[39m: AxiosError: Request failed with status code 400
+    at settle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2031:12)
+    at Unzip.handleStreamEnd (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:3148:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:160:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:77:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:18:11 [31merror[39m: Error: Fact-check failed: Schema hasn't been registered for model "Claim".
+Use mongoose.model(name, schema)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:111:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:18:49 [32minfo[39m: ::1 - - [11/Apr/2025:07:18:49 +0000] "POST /api/claims/test HTTP/1.1" 404 30 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:19:13 [32minfo[39m: ::1 - - [11/Apr/2025:07:19:13 +0000] "POST /api/claims/test HTTP/1.1" 404 30 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:23:25 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 08:23:30 [32minfo[39m: MongoDB connection established
+2025-04-11 08:23:30 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 08:23:30 [32minfo[39m: Testing fact check service...
+2025-04-11 08:23:32 [31merror[39m: AxiosError: Request failed with status code 400
+    at settle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2031:12)
+    at Unzip.handleStreamEnd (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:3148:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:161:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:78:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:23:33 [31merror[39m: Error: Fact-check failed: Schema hasn't been registered for model "Claim".
+Use mongoose.model(name, schema)
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:112:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 08:28:02 [32minfo[39m: ::1 - - [11/Apr/2025:07:28:02 +0000] "POST /api/auth/register HTTP/1.1" 201 289 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:30:33 [32minfo[39m: ::1 - - [11/Apr/2025:07:30:33 +0000] "POST /api/auth/login HTTP/1.1" 200 289 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:34:16 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:34:16 [32minfo[39m: ::1 - - [11/Apr/2025:07:34:16 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:35:40 [31merror[39m: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:70:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:35:40 [32minfo[39m: ::1 - - [11/Apr/2025:07:35:40 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:36:18 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:36:18 [32minfo[39m: ::1 - - [11/Apr/2025:07:36:18 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:39:41 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:39:41 [32minfo[39m: ::1 - - [11/Apr/2025:07:39:41 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "PostmanRuntime/7.43.3"
+2025-04-11 08:46:12 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:46:12 +0000] "POST /api/auth/register HTTP/1.1" 201 288 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 08:48:09 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:48:09 +0000] "POST /api/auth/login HTTP/1.1" 200 288 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 08:52:05 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:52:05 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:52:05 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 08:54:28 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:54:28 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:54:28 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 08:55:07 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:55:07 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:55:07 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 08:55:14 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:55:14 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:55:14 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 08:57:16 [31merror[39m: JsonWebTokenError: invalid token
+    at module.exports [as verify] (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\jsonwebtoken\verify.js:82:17)
+    at auth (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\middlewares\auth.js:14:25)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+2025-04-11 08:57:16 [32minfo[39m: ::ffff:127.0.0.1 - - [11/Apr/2025:07:57:16 +0000] "POST /api/claims HTTP/1.1" 401 50 "-" "Thunder Client (https://www.thunderclient.com)"
+2025-04-11 10:49:36 [32minfo[39m: Connecting to MongoDB...
+2025-04-11 10:49:41 [32minfo[39m: MongoDB connection established
+2025-04-11 10:49:41 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 10:49:41 [32minfo[39m: Testing fact check service...
+2025-04-11 10:49:43 [31merror[39m: AxiosError: Request failed with status code 400
+    at settle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:2031:12)
+    at Unzip.handleStreamEnd (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:3148:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\axios\dist\node\axios.cjs:4258:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async FactCheckService.checkGoogleFactCheck (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:161:24)
+    at async FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:78:28)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 10:49:43 [31merror[39m: Error: Fact-check failed: Verification validation failed: claimId: Path `claimId` is required.
+    at FactCheckService.verifyClaim (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\services\factCheck.service.js:112:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\test.js:14:20
+2025-04-11 12:45:37 [32minfo[39m: MongoDB connection established
+2025-04-11 12:45:37 [32minfo[39m: MongoDB Connected. Just to be sure...😉
+2025-04-11 12:45:37 [32minfo[39m: Server running on port 8080 🎉
+2025-04-11 13:10:08 [31merror[39m: TypeError: Cannot read properties of undefined (reading '_id')
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\routes\claim.route.js:35:29
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:291:5)
+    at Function.handle (C:\Users\chike\OneDrive\Desktop\QuickCheckingTool\quickcheckingtool\backend\node_modules\router\index.js:186:3)
+2025-04-11 13:10:08 [32minfo[39m: ::1 - - [11/Apr/2025:12:10:08 +0000] "POST /api/claims HTTP/1.1" 500 35 "-" "PostmanRuntime/7.43.3"
+

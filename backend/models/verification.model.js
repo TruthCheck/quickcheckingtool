@@ -1,107 +1,124 @@
-const verificationSchema = new mongoose.Schema({
-  claimId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Claim",
-    required: [true, 'Claim ID is required']
-  },
-  verificationMethod: {
-    type: String,
-    required: [true, 'Method is required'],
-    enum: ['automated', 'human', 'partner', 'official'],
-    default: 'automated'
-  },
-  verifiedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: function() {
-      return this.verificationMethod === 'human';
-    }
-  },
-  verdict: {
-    type: String,
-    required: [true, 'Verdict is required'],
-    enum: ['true', 'false', 'misleading', 'unverifiable']
-  },
-  confidenceScore: {
-    type: Number,
-    required: [true, 'Confidence score is required'],
-    min: [0, 'Confidence cannot be less than 0'],
-    max: [1, 'Confidence cannot exceed 1']
-  },
-  explanation: {
-    type: String,
-    required: [true, 'Explanation is required'],
-    minlength: [20, 'Explanation must be at least 20 characters']
-  },
-  sources: [{
-    name: {
+
+const mongoose = require("mongoose");
+const { ErrorResponse } = require("../utils/errorHandler");
+
+const verificationSchema = new mongoose.Schema(
+  {
+    verificationMethod: {
       type: String,
-      required: true
+      required: [true, "Method is required"],
+      enum: ["automated", "human", "partner", "official", "unverifiable"],
     },
-    url: {
+
+    claimId: {
+      // consider this object
+      type: mongoose.Schema.Types.ObjectId,
+      required: false,
+      ref: "Claim",
+    },
+
+    verdict: {
       type: String,
-      required: true,
-      validate: {
-        validator: function(v) {
-          return /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/.test(v);
+      required: [true, "Verdict is required"],
+      enum: ["true", "false", "misleading", "unverifiable"],
+    },
+    confidenceScore: {
+      type: Number,
+      required: [true, "Confidence score is required"],
+      min: [0, "Confidence cannot be less than 0"],
+      max: [1, "Confidence cannot exceed 1"],
+    },
+    explanation: {
+      type: String,
+      required: [true, "Explanation is required"],
+      minlength: [20, "Explanation must be at least 20 characters"],
+    },
+    sources: [
+      {
+        name: String,
+        url: {
+          type: String,
+          validate: {
+            validator: function (v) {
+              return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
+                v
+              );
+            },
+            message: (props) => `${props.value} is not a valid URL!`,
+          },
         },
-        message: props => `${props.value} is not a valid URL!`
-      }
+        type: {
+          type: String,
+          enum: ["official", "news", "expert", "other"],
+        },
+      },
+    ],
+    metadata: {
+      processingTime: Number,
+      toolsUsed: [String],
+      systemVersion: String,
     },
-    type: {
+    isDisputed: {
+      type: Boolean,
+      default: false,
+    },
+    disputeReason: String,
+    reviewStatus: {
       type: String,
-      enum: ['official', 'news', 'expert', 'other'],
-      required: true
-    }
-  }],
-  metadata: {
-    processingTime: Number,
-    toolsUsed: [String],
-    systemVersion: String
+
+      enum: ["pending", "approved", "rejected"],
+      default: "approved",
+    },
+    reviewedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      // ref: "User",
+    },
+
   },
-  isDisputed: {
-    type: Boolean,
-    default: false
-  },
-  disputeReason: {
-    type: String,
-    required: function() {
-      return this.isDisputed;
-    }
-  },
-  reviewStatus: {
-    type: String,
-    enum: ['pending', 'approved', 'rejected'],
-    default: 'approved'
-  },
-  reviewedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+  {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
-}, {
-  timestamps: true,
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true }
-});
+);
 
 
-verificationSchema.pre('save', function(next) {
-  if (this.verificationMethod === 'automated') {
-    this.reviewStatus = 'approved';
+
+verificationSchema.pre("save", function (next) {
+  if (this.verificationMethod === "human" && !this.verifiedBy) {
+    return next(
+      new ErrorResponse("Human verifications must have a verifier", 400)
+    );
   }
   next();
 });
 
-// Update claim status when verification is created
-verificationSchema.post('save', async function(doc) {
-  const Claim = mongoose.model('Claim');
-  await Claim.findByIdAndUpdate(doc.claimId, { 
-    status: doc.verdict === 'unverifiable' ? 'unverifiable' : 'verified',
-    lastVerifiedAt: new Date()
+
+verificationSchema.pre("save", function (next) {
+  if (this.verificationMethod === "automated") {
+    this.reviewStatus = "approved";
+
+  }
+  next();
+});
+
+
+
+verificationSchema.post("save", async function (doc) {
+  const Claim = mongoose.model("Claim");
+  await Claim.findByIdAndUpdate(doc.claimId, {
+    status: doc.verdict === "unverifiable" ? "unverifiable" : "verified",
+
   });
 });
 
 
 verificationSchema.index({ claimId: 1 });
 verificationSchema.index({ verifiedBy: 1 });
+
 verificationSchema.index({ verdict: 1, confidenceScore: -1 });
+
+const Verification = mongoose.model("Verification", verificationSchema);
+
+module.exports = Verification;
+

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 const { auth } = require("../middlewares/auth");
 const Claim = require("../models/claim.model");
 const Verification = require("../models/verification.model");
 const translationService = require("../services/translation.service");
 const logger = require("../utils/logger");
 
-
-router.post("/contribute", auth, async (req, res) => {
+router.post("/contribute", async (req, res) => {
   try {
     const {
       originalText,
@@ -28,15 +28,14 @@ router.post("/contribute", auth, async (req, res) => {
   }
 });
 
-
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { text, targetLanguage } = req.body;
 
     const translatedText = await translationService.translateText(
       text,
       targetLanguage,
-      "en" 
+      "en"
     );
 
     return res.json({
