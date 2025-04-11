@@ -1,48 +1,83 @@
 const verificationService = require('../services/verification.service');
-const { ErrorResponse } = require('../utils/errorHandler');
+const { ErrorResponse, SuccessResponse } = require('../utils/responseHandlers');
 const asyncHandler = require('../middleware/asyncHandler');
+const logger = require('../utils/logger');
+
+// Helper function to parse auth headers
+const parseAuthHeaders = (req) => ({
+  verifierId: req.user?.id || req.headers['x-verifier-id'] || null,
+  isAdmin: req.user?.isAdmin || req.headers['x-is-admin'] === 'true' || false,
+  reviewerId: req.user?.id || req.headers['x-reviewer-id'] || null
+});
 
 // Create a new verification
 exports.createVerification = asyncHandler(async (req, res, next) => {
-  // Extract verifier ID from headers or request object if available
-  const verifierId = req.headers['x-verifier-id'] || null;
+  const { verifierId } = parseAuthHeaders(req);
   
-  const verification = await verificationService.createVerification(req.body, verifierId);
-
-  res.status(201).json({
-    success: true,
-    data: verification
+  logger.info('Verification creation initiated', { 
+    body: req.body,
+    verifierId 
   });
+
+  const verification = await verificationService.createVerification(
+    req.body, 
+    verifierId
+  );
+
+  logger.info('Verification created successfully', { 
+    verificationId: verification._id 
+  });
+
+  new SuccessResponse(
+    'Verification created successfully',
+    verification,
+    201
+  ).send(res);
 });
 
-// Get all verifications
+// Get all verifications with pagination
 exports.getAllVerifications = asyncHandler(async (req, res, next) => {
-    const verifications = await verificationService.getRecentVerifications(100); 
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 25;
   
-    res.status(200).json({
-      success: true,
-      count: verifications.length,
-      data: verifications
-    });
-  });
-  
+  const { verifications, pagination } = await verificationService.getRecentVerifications(
+    limit,
+    page
+  );
+
+  new SuccessResponse(
+    'Verifications retrieved successfully',
+    verifications,
+    200,
+    pagination
+  ).send(res);
+});
 
 // Get single verification
 
 exports.getVerification = asyncHandler(async (req, res, next) => {
-  const verification = await verificationService.getVerificationById(req.params.id);
+  const verification = await verificationService.getVerificationById(
+    req.params.id,
+    { populate: true }
+  );
 
-  res.status(200).json({
-    success: true,
-    data: verification
-  });
+  new SuccessResponse(
+    'Verification retrieved successfully',
+    verification
+  ).send(res);
 });
 
 // Update verification
+
 exports.updateVerification = asyncHandler(async (req, res, next) => {
-  const verifierId = req.headers['x-verifier-id'] || null;
-  const isAdmin = req.headers['x-is-admin'] === 'true' || false;
+  const { verifierId, isAdmin } = parseAuthHeaders(req);
   
+  logger.info('Verification update initiated', {
+    verificationId: req.params.id,
+    updates: req.body,
+    verifierId
+  });
+
   const verification = await verificationService.updateVerification(
     req.params.id,
     req.body,
@@ -50,53 +85,95 @@ exports.updateVerification = asyncHandler(async (req, res, next) => {
     isAdmin
   );
 
-  res.status(200).json({
-    success: true,
-    data: verification
+  logger.info('Verification updated successfully', {
+    verificationId: verification._id
   });
+
+  new SuccessResponse(
+    'Verification updated successfully',
+    verification
+  ).send(res);
 });
 
 // Delete verification
-exports.deleteVerification = asyncHandler(async (req, res, next) => {
-  
-  const isAdmin = req.headers['x-is-admin'] === 'true' || false;
-  
-  await verificationService.deleteVerification(req.params.id, isAdmin);
 
-  res.status(200).json({
-    success: true,
-    data: {}
+exports.deleteVerification = asyncHandler(async (req, res, next) => {
+  const { isAdmin } = parseAuthHeaders(req);
+  
+  logger.warn('Verification deletion requested', {
+    verificationId: req.params.id,
+    isAdmin
   });
+
+  await verificationService.deleteVerification(
+    req.params.id, 
+    isAdmin
+  );
+
+  logger.warn('Verification deleted successfully', {
+    verificationId: req.params.id
+  });
+
+  new SuccessResponse(
+    'Verification deleted successfully',
+    {}
+  ).send(res);
 });
 
 // Dispute a verification
+
 exports.disputeVerification = asyncHandler(async (req, res, next) => {
   const { reason } = req.body;
   
-  if (!reason) {
-    return next(new ErrorResponse('Please provide a reason for the dispute', 400));
+  if (!reason || reason.length < 10) {
+    return next(new ErrorResponse(
+      'Please provide a valid reason for the dispute (min 10 chars)',
+      400
+    ));
   }
 
-  const verification = await verificationService.disputeVerification(req.params.id, reason);
+  const { verifierId } = parseAuthHeaders(req);
 
-  res.status(200).json({
-    success: true,
-    data: verification
+  logger.info('Verification dispute initiated', {
+    verificationId: req.params.id,
+    reason: reason.substring(0, 100) + (reason.length > 100 ? '...' : ''),
+    verifierId
   });
+
+  const verification = await verificationService.disputeVerification(
+    req.params.id,
+    reason,
+    verifierId
+  );
+
+  logger.info('Verification disputed successfully', {
+    verificationId: verification._id
+  });
+
+  new SuccessResponse(
+    'Verification disputed successfully',
+    verification
+  ).send(res);
 });
 
 // Review a disputed verification
+
 exports.reviewDispute = asyncHandler(async (req, res, next) => {
-  const { status, reviewerId } = req.body;
-  const isAdmin = req.headers['x-is-admin'] === 'true' || false;
+  const { status } = req.body;
+  const { reviewerId, isAdmin } = parseAuthHeaders(req);
   
   if (!status || !['approved', 'rejected'].includes(status)) {
-    return next(new ErrorResponse('Please provide a valid review status', 400));
+    return next(new ErrorResponse(
+      'Invalid review status. Must be "approved" or "rejected"',
+      400
+    ));
   }
 
-  if (!reviewerId) {
-    return next(new ErrorResponse('Please provide a reviewer ID', 400));
-  }
+  logger.info('Dispute review initiated', {
+    verificationId: req.params.id,
+    status,
+    reviewerId
+  });
 
   const verification = await verificationService.reviewDispute(
     req.params.id,
@@ -105,55 +182,84 @@ exports.reviewDispute = asyncHandler(async (req, res, next) => {
     isAdmin
   );
 
-  res.status(200).json({
-    success: true,
-    data: verification
+  logger.info('Dispute reviewed successfully', {
+    verificationId: verification._id,
+    status
   });
+
+  new SuccessResponse(
+    'Dispute reviewed successfully',
+    verification
+  ).send(res);
 });
 
-// Get verifications by claim
+// Get verifications by claim ID
 exports.getVerificationsByClaim = asyncHandler(async (req, res, next) => {
-  const verifications = await verificationService.getVerificationsByClaim(req.params.claimId);
+  const { verifications, pagination } = await verificationService.getVerificationsByClaim(
+    req.params.claimId,
+    {
+      page: parseInt(req.query.page) || 1,
+      limit: parseInt(req.query.limit) || 10,
+      method: req.query.method,
+      verdict: req.query.verdict,
+      disputed: req.query.disputed ? req.query.disputed === 'true' : undefined,
+      reviewed: req.query.reviewed ? req.query.reviewed === 'true' : undefined
+    }
+  );
 
-  res.status(200).json({
-    success: true,
-    count: verifications.length,
-    data: verifications
-  });
+  new SuccessResponse(
+    'Verifications retrieved successfully',
+    verifications,
+    200,
+    pagination
+  ).send(res);
 });
 
-// Get verification statistics
+//Get verification statistics
 exports.getVerificationStats = asyncHandler(async (req, res, next) => {
   const stats = await verificationService.getVerificationStats();
 
-  res.status(200).json({
-    success: true,
-    data: stats
-  });
+  new SuccessResponse(
+    'Verification statistics retrieved successfully',
+    stats
+  ).send(res);
 });
 
-// Get high confidence verifications
+//Get high confidence verifications
 exports.getHighConfidenceVerifications = asyncHandler(async (req, res, next) => {
   const minConfidence = parseFloat(req.query.min) || 0.8;
-  
-  const verifications = await verificationService.getHighConfidenceVerifications(minConfidence);
-
-  res.status(200).json({
-    success: true,
-    count: verifications.length,
-    data: verifications
-  });
-});
-
-// Get recent verifications
-exports.getRecentVerifications = asyncHandler(async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
   
-  const verifications = await verificationService.getRecentVerifications(limit);
+  const { verifications, pagination } = await verificationService.getHighConfidenceVerifications(
+    minConfidence,
+    page,
+    limit
+  );
 
-  res.status(200).json({
-    success: true,
-    count: verifications.length,
-    data: verifications
-  });
+  new SuccessResponse(
+    'High confidence verifications retrieved successfully',
+    verifications,
+    200,
+    pagination
+  ).send(res);
+});
+
+//Get recent verifications
+
+exports.getRecentVerifications = asyncHandler(async (req, res, next) => {
+  const limit = parseInt(req.query.limit) || 10;
+  const page = parseInt(req.query.page) || 1;
+  
+  const { verifications, pagination } = await verificationService.getRecentVerifications(
+    limit,
+    page
+  );
+
+  new SuccessResponse(
+    'Recent verifications retrieved successfully',
+    verifications,
+    200,
+    pagination
+  ).send(res);
 });
