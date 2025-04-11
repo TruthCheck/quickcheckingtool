@@ -1,12 +1,21 @@
-const mongoose = require('mongoose');
-const { ErrorResponse } = require('../utils/errorHandler');
-
 const verificationSchema = new mongoose.Schema({
   claimId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Claim",
+    required: [true, 'Claim ID is required']
+  },
+  verificationMethod: {
+    type: String,
     required: [true, 'Method is required'],
-    enum: ['automated', 'human', 'partner', 'official']
+    enum: ['automated', 'human', 'partner', 'official'],
+    default: 'automated'
+  },
+  verifiedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: function() {
+      return this.verificationMethod === 'human';
+    }
   },
   verdict: {
     type: String,
@@ -25,19 +34,24 @@ const verificationSchema = new mongoose.Schema({
     minlength: [20, 'Explanation must be at least 20 characters']
   },
   sources: [{
-    name: String,
+    name: {
+      type: String,
+      required: true
+    },
     url: {
       type: String,
+      required: true,
       validate: {
         validator: function(v) {
-          return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(v);
+          return /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/.test(v);
         },
         message: props => `${props.value} is not a valid URL!`
       }
     },
     type: {
       type: String,
-      enum: ['official', 'news', 'expert', 'other']
+      enum: ['official', 'news', 'expert', 'other'],
+      required: true
     }
   }],
   metadata: {
@@ -49,7 +63,12 @@ const verificationSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  disputeReason: String,
+  disputeReason: {
+    type: String,
+    required: function() {
+      return this.isDisputed;
+    }
+  },
   reviewStatus: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],
@@ -65,15 +84,7 @@ const verificationSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Validate that human verifications have user references
-verificationSchema.pre('save', function(next) {
-  if (this.verificationMethod === 'human' && !this.verifiedBy) {
-    return next(new ErrorResponse('Human verifications must have a verifier', 400));
-  }
-  next();
-});
 
-// Auto-approve automated verifications
 verificationSchema.pre('save', function(next) {
   if (this.verificationMethod === 'automated') {
     this.reviewStatus = 'approved';
@@ -85,15 +96,12 @@ verificationSchema.pre('save', function(next) {
 verificationSchema.post('save', async function(doc) {
   const Claim = mongoose.model('Claim');
   await Claim.findByIdAndUpdate(doc.claimId, { 
-    status: doc.verdict === 'unverifiable' ? 'unverifiable' : 'verified'
+    status: doc.verdict === 'unverifiable' ? 'unverifiable' : 'verified',
+    lastVerifiedAt: new Date()
   });
 });
 
-// Indexes for faster queries
+
 verificationSchema.index({ claimId: 1 });
 verificationSchema.index({ verifiedBy: 1 });
 verificationSchema.index({ verdict: 1, confidenceScore: -1 });
-
-const Verification = mongoose.model('Verification', verificationSchema);
-
-module.exports = Verification;
