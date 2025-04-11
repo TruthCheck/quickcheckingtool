@@ -72,14 +72,14 @@ class FactCheckService {
 
   async checkGoogleFactCheck(claimText, language = "en") {
     try {
-      const apiKey = process.env.GOOGLE_FACTCHECK_API_KEY;
+      // const apiKey = process.env.GOOGLE_FACTCHECK_API_KEY;
       const baseUrl =
         "https://factchecktools.googleapis.com/v1alpha1/claims:search";
 
       const params = new URLSearchParams({
         query: claimText,
         languageCode: this.mapLanguageCode(language),
-        key: apiKey,
+        key: process.env.GOOGLE_FACTCHECK_API_KEY,
       });
 
       const url = `${baseUrl}?${params.toString()}`;
